@@ -1,0 +1,6 @@
+@EcoLife.HouseHoldApi_HostAddress = http://localhost:5151
+
+GET {{EcoLife.HouseHoldApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

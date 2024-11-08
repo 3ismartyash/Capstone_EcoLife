@@ -7,6 +7,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIS", "APIS", "{4ACDE0D9-E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoLife.AuthAPi", "EcoLife.AuthAPi\EcoLife.AuthAPi.csproj", "{91D84856-AD80-48E1-9401-F5B47B0AA59A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoLife.HouseHoldApi", "EcoLife.HouseHoldApi\EcoLife.HouseHoldApi.csproj", "{12E8D9A9-63F5-4C2D-B7CB-7E0CB0D6F3FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoLife.TransportationApi", "EcoLife.TransportationApi\EcoLife.TransportationApi.csproj", "{B70EA7E3-C1BB-4ADC-86EE-9F9700F971EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoLife.WasteManagementApi", "EcoLife.WasteManagementApi\EcoLife.WasteManagementApi.csproj", "{CACACB9A-75FF-41C0-A30C-437B472B2EFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoLife.RecommendationApi", "EcoLife.RecommendationApi\EcoLife.RecommendationApi.csproj", "{B5EABAAB-4B57-4E35-B8C5-89C5E3ACE00C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +25,32 @@ Global
 		{91D84856-AD80-48E1-9401-F5B47B0AA59A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91D84856-AD80-48E1-9401-F5B47B0AA59A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91D84856-AD80-48E1-9401-F5B47B0AA59A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E8D9A9-63F5-4C2D-B7CB-7E0CB0D6F3FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E8D9A9-63F5-4C2D-B7CB-7E0CB0D6F3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E8D9A9-63F5-4C2D-B7CB-7E0CB0D6F3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E8D9A9-63F5-4C2D-B7CB-7E0CB0D6F3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B70EA7E3-C1BB-4ADC-86EE-9F9700F971EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B70EA7E3-C1BB-4ADC-86EE-9F9700F971EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B70EA7E3-C1BB-4ADC-86EE-9F9700F971EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B70EA7E3-C1BB-4ADC-86EE-9F9700F971EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CACACB9A-75FF-41C0-A30C-437B472B2EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CACACB9A-75FF-41C0-A30C-437B472B2EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CACACB9A-75FF-41C0-A30C-437B472B2EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CACACB9A-75FF-41C0-A30C-437B472B2EFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5EABAAB-4B57-4E35-B8C5-89C5E3ACE00C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5EABAAB-4B57-4E35-B8C5-89C5E3ACE00C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5EABAAB-4B57-4E35-B8C5-89C5E3ACE00C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5EABAAB-4B57-4E35-B8C5-89C5E3ACE00C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{91D84856-AD80-48E1-9401-F5B47B0AA59A} = {4ACDE0D9-E1A4-4366-90A3-3DADA3FF101E}
+		{12E8D9A9-63F5-4C2D-B7CB-7E0CB0D6F3FD} = {4ACDE0D9-E1A4-4366-90A3-3DADA3FF101E}
+		{B70EA7E3-C1BB-4ADC-86EE-9F9700F971EA} = {4ACDE0D9-E1A4-4366-90A3-3DADA3FF101E}
+		{CACACB9A-75FF-41C0-A30C-437B472B2EFB} = {4ACDE0D9-E1A4-4366-90A3-3DADA3FF101E}
+		{B5EABAAB-4B57-4E35-B8C5-89C5E3ACE00C} = {4ACDE0D9-E1A4-4366-90A3-3DADA3FF101E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D85995A1-2ED8-4051-B92E-3CE48ECD3B81}

@@ -1,0 +1,6 @@
+@EcoLife.WasteManagementApi_HostAddress = http://localhost:5111
+
+GET {{EcoLife.WasteManagementApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
