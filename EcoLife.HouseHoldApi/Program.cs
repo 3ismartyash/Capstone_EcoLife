@@ -1,4 +1,8 @@
 
+using EcoLife.HouseHoldApi.Data;
+using EcoLife.HouseHoldApi.Repository;
+using Microsoft.EntityFrameworkCore;
+
 namespace EcoLife.HouseHoldApi
 {
     public class Program
@@ -10,6 +14,8 @@ namespace EcoLife.HouseHoldApi
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<HouseHoldDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ELHouseHoldDB")));    
+            builder.Services.AddTransient<IHouseHoldRepository, HouseHoldRepository>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
