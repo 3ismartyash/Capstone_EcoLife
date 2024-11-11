@@ -1,4 +1,8 @@
 
+using EcoLife.TransportationApi.Data;
+using EcoLife.TransportationApi.Repository;
+using Microsoft.EntityFrameworkCore;
+
 namespace EcoLife.TransportationApi
 {
     public class Program
@@ -10,6 +14,11 @@ namespace EcoLife.TransportationApi
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<TransportationDbContext>(options =>
+            options.UseSqlServer (builder.Configuration.GetConnectionString("ELTransportationDB")));
+
+            builder.Services.AddTransient<ITransportationRepository, TransportationRepository>();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
