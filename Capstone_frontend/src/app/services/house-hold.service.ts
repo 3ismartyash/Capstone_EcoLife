@@ -7,19 +7,19 @@ import { Injectable } from '@angular/core';
 export class HouseHoldService {
 
   constructor(private http:HttpClient) { }
-  // getAll()
-  // {
-  //   return this.http.get("");
-  // }
+  getAll()
+  {
+    return this.http.get("https://localhost:3002/api/HouseHold/all");
+  }
 
-  // getById()
-  // {
-  //   return this.http.get("");
-  // }
+  getById()
+  {
+    return this.http.get("https://localhost:3002/api/HouseHold/",);
+  }
 
   // add()
   // {
-  //   return this.http.post("",);
+  //   return this.http.post("https://localhost:3002/api/HouseHold",);
   // }
 
   // update()

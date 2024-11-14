@@ -25,7 +25,7 @@ namespace EcoLife.AuthApi.Service
             var claimList = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email,applicationUser.Email),
-                new Claim(JwtRegisteredClaimNames.Sub,applicationUser.Id),
+                new Claim(JwtRegisteredClaimNames.Sub,applicationUser.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Name,applicationUser.UserName),
                 new Claim(ClaimTypes.Role, role[0])
 

@@ -11,8 +11,8 @@ namespace MicroServicesExample.Services.AuthApi.Service
         private readonly UserDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        public AuthService(UserDbContext db, IJwtTokenGenerator jwtTokenGenerator,UserManager<ApplicationUser> userManager,RoleManager<IdentityRole> roleManager)
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        public AuthService(UserDbContext db, IJwtTokenGenerator jwtTokenGenerator,UserManager<ApplicationUser> userManager,RoleManager<ApplicationRole> roleManager)
         {
             _db = db;
             _userManager = userManager;
@@ -85,7 +85,7 @@ namespace MicroServicesExample.Services.AuthApi.Service
                         var roleName = "User";
                         if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
                         {
-                            _roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
+                            _roleManager.CreateAsync(new ApplicationRole { Name = roleName }).GetAwaiter().GetResult();
                         }
                         await _userManager.AddToRoleAsync(user, roleName);
                         return roleName;
@@ -95,7 +95,7 @@ namespace MicroServicesExample.Services.AuthApi.Service
                         var roleName = "Admin";
                         if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
                         {
-                            _roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
+                            _roleManager.CreateAsync(new ApplicationRole { Name = roleName }).GetAwaiter().GetResult();
                         }
                         await _userManager.AddToRoleAsync(user, roleName);
                         return roleName;

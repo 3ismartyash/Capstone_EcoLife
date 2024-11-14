@@ -22,7 +22,7 @@ namespace EcoLife.AuthAPi
             // Add services to the container.
             builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
             builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<UserDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<UserDbContext>().AddDefaultTokenProviders();
             builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
