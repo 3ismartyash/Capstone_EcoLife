@@ -1,0 +1,22 @@
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .btn-outline-success {
+    color: #28a745;
+    border-color: #28a745;
+    padding: 0.5rem 1rem;
+  }
+  
+  .btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+  }
+  

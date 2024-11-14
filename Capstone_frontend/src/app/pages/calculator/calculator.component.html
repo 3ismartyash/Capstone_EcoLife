@@ -1,0 +1,72 @@
+<div class="container py-5">
+    <h1 class="display-5 text-center mb-4">Carbon Footprint Calculator</h1>
+    <form (ngSubmit)="onSubmit()" #calculateForm="ngForm">
+      
+      <!-- Household Section -->
+      <h3 class="text-success mb-3">Household</h3>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label for="electricityUsage" class="form-label">Electricity Usage (kWh)</label>
+          <input type="number" class="form-control" id="electricityUsage" name="electricityUsage" ngModel required>
+        </div>
+        <div class="col-md-4">
+          <label for="lpgUsage" class="form-label">LPG Usage (kg)</label>
+          <input type="number" class="form-control" id="lpgUsage" name="lpgUsage" ngModel required>
+        </div>
+        <div class="col-md-4">
+          <label for="coalUsage" class="form-label">Coal Usage (kg)</label>
+          <input type="number" class="form-control" id="coalUsage" name="coalUsage" ngModel required>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="householdDate" class="form-label">Recorded Date</label>
+        <input type="date" class="form-control" id="householdDate" name="householdDate" ngModel required>
+      </div>
+  
+      <!-- Transportation Section -->
+      <h3 class="text-success mb-3">Transportation</h3>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label for="petrolUsage" class="form-label">Petrol Usage (liters)</label>
+          <input type="number" class="form-control" id="petrolUsage" name="petrolUsage" ngModel required>
+        </div>
+        <div class="col-md-4">
+          <label for="dieselUsage" class="form-label">Diesel Usage (liters)</label>
+          <input type="number" class="form-control" id="dieselUsage" name="dieselUsage" ngModel required>
+        </div>
+        <div class="col-md-4">
+          <label for="cngUsage" class="form-label">CNG Usage (kg)</label>
+          <input type="number" class="form-control" id="cngUsage" name="cngUsage" ngModel required>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="transportDate" class="form-label">Recorded Date</label>
+        <input type="date" class="form-control" id="transportDate" name="transportDate" ngModel required>
+      </div>
+  
+      <!-- Waste Management Section -->
+      <h3 class="text-success mb-3">Waste Management</h3>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label for="recycledWaste" class="form-label">Recycled Waste (kg)</label>
+          <input type="number" class="form-control" id="recycledWaste" name="recycledWaste" ngModel required>
+        </div>
+        <div class="col-md-4">
+          <label for="compostWaste" class="form-label">Compost Waste (kg)</label>
+          <input type="number" class="form-control" id="compostWaste" name="compostWaste" ngModel required>
+        </div>
+        <div class="col-md-4">
+          <label for="landfillWaste" class="form-label">Landfill Waste (kg)</label>
+          <input type="number" class="form-control" id="landfillWaste" name="landfillWaste" ngModel required>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="wasteDate" class="form-label">Recorded Date</label>
+        <input type="date" class="form-control" id="wasteDate" name="wasteDate" ngModel required>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-success mt-4" [disabled]="!calculateForm.valid">Calculate Footprint</button>
+    </form>
+  </div>
+  

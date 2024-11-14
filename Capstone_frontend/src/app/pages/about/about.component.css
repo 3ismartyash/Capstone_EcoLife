@@ -1,0 +1,31 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  h1, h3 {
+    color: #2f9e44;
+  }
+  
+  .lead {
+    font-size: 1.25rem;
+    color: #555;
+  }
+  
+  p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  h3 {
+    margin-top: 2rem;
+  }
+  
+  .row {
+    text-align: left;
+  }
+  
+  .text-success {
+    font-weight: bold;
+  }
+  
