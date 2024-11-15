@@ -12,29 +12,34 @@ import { UserService } from '../../services/user.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
   userService = inject(UserService);
   router = inject(Router);
   role = "";
+  isRegisterMode = false;
   userobj: any = {
-    username: 'sim@gmail.com',
-    password: 'Sim@123'
+    "username": 'sim@gmail.com',
+    "password": 'Sim@123'
   };
   regobj: any = {
-    email: 'Def@gmail.com',
-    name: 'def',
-    phonenumber: '789',
-    password: 'Def@123'
+    "email": 'Def@gmail.com',
+    "name": 'def',
+    "phonenumber": '789',
+    "password": 'Def@123'
 
   };
 
+  switchToRegister(event: MouseEvent) 
+  {
+    event.preventDefault();  // Prevents the default link behavior
+    this.isRegisterMode = true;
+    }
 
   onRegister() {
     this.userService.register(this.regobj).subscribe((res: any) => {
       if (res.isSuccess) {
         alert("Register Success");
-        this.router.navigateByUrl('home');
-        localStorage.setItem("role", res.result);
-        this.role = res.result;
+        this.isRegisterMode = false;
       }
       else
         alert(res.message);
@@ -46,6 +51,7 @@ export class LoginComponent {
       if (res.isSuccess) {
         alert("Login Success");
         this.router.navigateByUrl('home');
+        localStorage.setItem("userid",res.result.user.id);
         localStorage.setItem("token", res.result.token);
         localStorage.setItem("role", res.result.role);
         this.role = res.result.role;

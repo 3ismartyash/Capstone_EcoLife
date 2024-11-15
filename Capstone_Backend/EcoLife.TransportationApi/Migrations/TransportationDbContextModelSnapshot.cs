@@ -42,7 +42,7 @@ namespace EcoLife.TransportationApi.Migrations
                     b.Property<DateTime>("RecordedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("TranportEmmision")
+                    b.Property<double>("TransportEmission")
                         .HasColumnType("float");
 
                     b.Property<int>("UserId")

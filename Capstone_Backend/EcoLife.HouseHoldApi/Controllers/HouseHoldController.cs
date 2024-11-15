@@ -34,7 +34,7 @@ namespace EcoLife.HouseHoldApi.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<HouseHoldEntity>> PostEntity([FromForm]HouseHoldDto entity)
+        public async Task<ActionResult<HouseHoldEntity>> PostEntity(HouseHoldDto entity)
         {
             if (entity != null)
             {
@@ -46,7 +46,7 @@ namespace EcoLife.HouseHoldApi.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<HouseHoldEntity>> PutEntity(int id,[FromForm] HouseHoldDto entity)
+        public async Task<ActionResult<HouseHoldEntity>> PutEntity(int id,HouseHoldDto entity)
         {
 
             var ent = await _houseHoldRepository.PutHouseHoldEntity(id, entity);

@@ -36,7 +36,7 @@ namespace EcoLife.WasteManagementApi.Controllers
 
         [HttpPost]
 
-        public async Task<ActionResult<WasteManagementEntity>> PostEntity([FromForm] WasteManagementDto entity)
+        public async Task<ActionResult<WasteManagementEntity>> PostEntity( WasteManagementDto entity)
         {
             if(entity != null)
             {
@@ -48,7 +48,7 @@ namespace EcoLife.WasteManagementApi.Controllers
 
         [HttpPut("{id}")]
 
-        public async Task<ActionResult<WasteManagementEntity>> PutEntity(int id, [FromForm] WasteManagementDto entity)
+        public async Task<ActionResult<WasteManagementEntity>> PutEntity(int id, WasteManagementDto entity)
         {
             var ent = await _wasteManagementRepository.putWasteMangementEntity(id, entity);
             if (ent != null) return Ok(ent);

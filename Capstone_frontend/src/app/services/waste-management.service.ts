@@ -17,10 +17,10 @@ export class WasteManagementService {
   //   return this.http.get("");
   // }
 
-  // add()
-  // {
-  //   return this.http.post("",);
-  // }
+  add(waste:any)
+  {
+    return this.http.post("https://localhost:3004/api/WasteManagement",waste);
+  }
 
   // update()
   // {

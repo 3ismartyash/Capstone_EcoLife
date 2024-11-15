@@ -24,11 +24,11 @@ namespace EcoLife.WasteManagementApi.Migrations
 
             modelBuilder.Entity("EcoLife.WasteManagementApi.Models.WasteManagementEntity", b =>
                 {
-                    b.Property<int>("WateManagementId")
+                    b.Property<int>("WasteManagementId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WateManagementId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WasteManagementId"));
 
                     b.Property<double>("CompostWaste")
                         .HasColumnType("float");
@@ -45,10 +45,10 @@ namespace EcoLife.WasteManagementApi.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<double>("WasteEmmision")
+                    b.Property<double>("WasteEmission")
                         .HasColumnType("float");
 
-                    b.HasKey("WateManagementId");
+                    b.HasKey("WasteManagementId");
 
                     b.ToTable("WasteManagementEntities");
                 });

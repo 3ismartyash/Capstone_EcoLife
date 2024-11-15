@@ -43,11 +43,12 @@ namespace EcoLife.WasteManagementApi.Repository
             double? calculate = (entity.RecycledWaste + entity.CompostWaste + entity.LandfillWaste);
             var ent = new WasteManagementEntity()
             {
+                UserId = entity.UserId,
                 RecycledWaste = entity.RecycledWaste,
                 CompostWaste = entity.CompostWaste,
                 LandfillWaste = entity.LandfillWaste,
-                RecordedDate = entity.RecordedDate,
-                WasteEmmision = (double)calculate
+                RecordedDate = DateTime.UtcNow,
+                WasteEmission = (double)calculate
             };
             _db.WasteManagementEntities.Add(ent);
             await _db.SaveChangesAsync();

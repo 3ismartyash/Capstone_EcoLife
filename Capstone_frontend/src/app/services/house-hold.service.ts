@@ -12,15 +12,15 @@ export class HouseHoldService {
     return this.http.get("https://localhost:3002/api/HouseHold/all");
   }
 
-  getById()
+  getById(userid:any)
   {
-    return this.http.get("https://localhost:3002/api/HouseHold/",);
+    return this.http.get("https://localhost:3002/api/HouseHold/"+userid); 
   }
 
-  // add()
-  // {
-  //   return this.http.post("https://localhost:3002/api/HouseHold",);
-  // }
+  add(household:any)
+  {
+    return this.http.post("https://localhost:3002/api/HouseHold",household);
+  }
 
   // update()
   // {

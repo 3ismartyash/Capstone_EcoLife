@@ -7,8 +7,6 @@ namespace EcoLife.HouseHoldApi.Repository
     {
         Task<IEnumerable<HouseHoldEntity>> GetHouseHoldEntities();
         Task<IEnumerable<HouseHoldEntity>> GetHouseHoldEntityById(int userid);
-
-        //Task<HouseHoldEntity> PostHouseHoldEntity(int userid,HouseHoldDto entity);
         Task<HouseHoldEntity> PostHouseHoldEntity(HouseHoldDto entity);
         Task<HouseHoldEntity> PutHouseHoldEntity(int id, HouseHoldDto entity);
         Task<bool> DeleteHouseHoldEntity(int id);

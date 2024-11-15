@@ -9,7 +9,6 @@ namespace EcoLife.TransportationApi.Repository
 
         Task<IEnumerable<TransportationEntity>> GetTransportationById(int userid);
 
-        //Task<TransportationEntity> postTransportationEntity(int userid,TransportationDto entity);
         Task<TransportationEntity> postTransportationEntity(TransportationDto entity);
 
         Task<TransportationEntity> putTransportationEntity(int id, TransportationDto entity);

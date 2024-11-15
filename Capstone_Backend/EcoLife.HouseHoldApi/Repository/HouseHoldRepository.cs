@@ -36,17 +36,17 @@ namespace EcoLife.HouseHoldApi.Repository
 
 
 
-        //public async Task<HouseHoldEntity> PostHouseHoldEntity(int userid,HouseHoldDto entity)
+        
         public async Task<HouseHoldEntity> PostHouseHoldEntity(HouseHoldDto entity)
         {
             var ent = new HouseHoldEntity()
             {
-                //UserId = userid,
+                UserId = entity.UserId,
                 ElectricityUsage = entity.ElectricityUsage,
                 LPGUsage = entity.LPGUsage,
                 CoalUsage = entity.CoalUsage,
-                RecordedDate = entity.RecordedDate,
-                HouseHoldEmisssion = entity.LPGUsage + entity.CoalUsage + entity.ElectricityUsage
+                RecordedDate = DateTime.UtcNow,
+                HouseHoldEmission = entity.LPGUsage + entity.CoalUsage + entity.ElectricityUsage
             };
             _db.HouseHoldEntities.Add(ent);
             await _db.SaveChangesAsync();   

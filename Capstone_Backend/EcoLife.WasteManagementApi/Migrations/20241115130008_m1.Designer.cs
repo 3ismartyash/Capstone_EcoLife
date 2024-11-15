@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoLife.WasteManagementApi.Migrations
 {
     [DbContext(typeof(WasteManagementDbContext))]
-    [Migration("20241111120129_hello")]
-    partial class hello
+    [Migration("20241115130008_m1")]
+    partial class m1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,11 @@ namespace EcoLife.WasteManagementApi.Migrations
 
             modelBuilder.Entity("EcoLife.WasteManagementApi.Models.WasteManagementEntity", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("WasteManagementId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WasteManagementId"));
 
                     b.Property<double>("CompostWaste")
                         .HasColumnType("float");
@@ -45,13 +45,13 @@ namespace EcoLife.WasteManagementApi.Migrations
                     b.Property<double>("RecycledWaste")
                         .HasColumnType("float");
 
-                    b.Property<double>("WasteEmmision")
-                        .HasColumnType("float");
-
-                    b.Property<int>("WateManagementId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId");
+                    b.Property<double>("WasteEmission")
+                        .HasColumnType("float");
+
+                    b.HasKey("WasteManagementId");
 
                     b.ToTable("WasteManagementEntities");
                 });

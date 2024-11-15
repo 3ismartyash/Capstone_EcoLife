@@ -20,14 +20,14 @@ namespace EcoLife.AuthAPi.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegistrationRequestDto model)
         {
-            var Message = await _authService.Register(model);
-            if (!(Message=="User" || Message=="Admin"))
+            var errorMessage = await _authService.Register(model);
+            if (!string.IsNullOrEmpty(errorMessage))
             {
                 _response.IsSuccess = false;
-                _response.Message = Message;
+                _response.Message = errorMessage;
                 return BadRequest(_response);
             }
-            _response.Result = Message;
+            
             return Ok(_response);
         }
         [HttpPost("Login")]
@@ -43,18 +43,5 @@ namespace EcoLife.AuthAPi.Controllers
             _response.Result = loginResponse;
             return Ok(_response);
         }
-
-        //[HttpPost("AssignRole")]
-        //public async Task<IActionResult> AssignRole([FromBody] RegistrationRequestDto model)
-        //{
-        //    var assignRoleSuccessful = await _authService.AssignRole(model.Email, model.Role.ToUpper());
-        //    if (!assignRoleSuccessful)
-        //    {
-        //        _response.IsSuccess = false;
-        //        _response.Message = "Error encountered";
-        //        return BadRequest(_response);
-        //    }
-        //    return Ok(_response);
-        //}
     }
 }

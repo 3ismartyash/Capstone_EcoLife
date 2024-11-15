@@ -3,30 +3,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace EcoLife.HouseHoldApi.Migrations
+namespace EcoLife.TransportationApi.Migrations
 {
     /// <inheritdoc />
-    public partial class firstmigration : Migration
+    public partial class m1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "HouseHoldEntities",
+                name: "transportationEntities",
                 columns: table => new
                 {
-                    HouseHoldId = table.Column<int>(type: "int", nullable: false)
+                    TransportationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    ElectricityUsage = table.Column<double>(type: "float", nullable: false),
-                    LPGUsage = table.Column<double>(type: "float", nullable: false),
-                    CoalUsage = table.Column<double>(type: "float", nullable: false),
+                    PetrolUsage = table.Column<double>(type: "float", nullable: false),
+                    DieselUsage = table.Column<double>(type: "float", nullable: false),
+                    CNGUsage = table.Column<double>(type: "float", nullable: false),
                     RecordedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HouseHoldEmisssion = table.Column<double>(type: "float", nullable: false)
+                    TransportEmission = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HouseHoldEntities", x => x.HouseHoldId);
+                    table.PrimaryKey("PK_transportationEntities", x => x.TransportationId);
                 });
         }
 
@@ -34,7 +34,7 @@ namespace EcoLife.HouseHoldApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "HouseHoldEntities");
+                name: "transportationEntities");
         }
     }
 }

@@ -17,10 +17,10 @@ export class TransportService {
   //   return this.http.get("");
   // }
 
-  // add()
-  // {
-  //   return this.http.post("",);
-  // }
+ add(transport:any)
+  {
+    return this.http.post("https://localhost:3003/api/Transportation",transport);
+  }
 
   // update()
   // {

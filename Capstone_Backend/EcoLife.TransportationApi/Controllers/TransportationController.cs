@@ -32,7 +32,7 @@ namespace EcoLife.TransportationApi.Controllers
 
         [HttpPost]
 
-        public async Task<ActionResult<TransportationEntity>> PostEntity([FromForm]TransportationDto entity)
+        public async Task<ActionResult<TransportationEntity>> PostEntity(TransportationDto entity)
         {
             if (entity != null)
             {
@@ -44,7 +44,7 @@ namespace EcoLife.TransportationApi.Controllers
 
         [HttpPut("{id}")]
 
-        public async Task<ActionResult<TransportationEntity>> PutEntity(int id,[FromForm] TransportationDto entity)
+        public async Task<ActionResult<TransportationEntity>> PutEntity(int id, TransportationDto entity)
         {
             var ent = await _transportationRepository.putTransportationEntity(id, entity);
             if (ent != null) return Ok(ent);

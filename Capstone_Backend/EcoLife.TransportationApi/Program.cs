@@ -18,6 +18,15 @@ namespace EcoLife.TransportationApi
             options.UseSqlServer (builder.Configuration.GetConnectionString("ELTransportationDB")));
 
             builder.Services.AddTransient<ITransportationRepository, TransportationRepository>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder
+                        .WithOrigins("http://localhost:4200") // Add your Angular app's URL
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials()); // Add if you're using cookies or authentication
+            });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -36,7 +45,7 @@ namespace EcoLife.TransportationApi
 
             app.UseAuthorization();
 
-
+            app.UseCors("AllowSpecificOrigin");
             app.MapControllers();
 
             app.Run();

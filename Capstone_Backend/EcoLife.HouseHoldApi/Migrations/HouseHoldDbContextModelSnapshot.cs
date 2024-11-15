@@ -36,7 +36,7 @@ namespace EcoLife.HouseHoldApi.Migrations
                     b.Property<double>("ElectricityUsage")
                         .HasColumnType("float");
 
-                    b.Property<double>("HouseHoldEmisssion")
+                    b.Property<double>("HouseHoldEmission")
                         .HasColumnType("float");
 
                     b.Property<double>("LPGUsage")
