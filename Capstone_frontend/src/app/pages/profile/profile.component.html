@@ -1,1 +1,73 @@
-<p>profile works!</p>
+<div class="profile-container container mt-4">
+  
+    <h2 class="mb-3">User Profile</h2>
+    <form (ngSubmit)="updateProfile()" class="mb-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              type="text"
+              [(ngModel)]="user.name"
+              name="name"
+              class="form-control"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              [(ngModel)]="user.email"
+              name="email"
+              class="form-control"
+              placeholder="Enter your email"
+              required
+              disabled
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label for="phone">Phone Number</label>
+            <input
+              id="phone"
+              type="text"
+              [(ngModel)]="user.phoneNumber"
+              name="phone"
+              class="form-control"
+              placeholder="Enter your phone number"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+  
+
+    <h3>User Submissions</h3>
+    <div class="submission-list mt-3">
+        @for (submission of submissions; track $index) {
+      <div
+        
+        class="card mb-3"
+        style="width: 100%;"
+      >
+        <div class="card-body">
+          <h5 class="card-title">Submission #{{ submission.id }}</h5>
+          <p class="card-text"><strong>Date:</strong> {{ submission.date }}</p>
+          <p class="card-text"><strong>Details:</strong> {{ submission.details }}</p>
+          <button class="btn btn-secondary" (click)="editSubmission(submission)">
+            Edit Submission
+          </button>
+        </div>
+      </div>
+    }
+    </div>
+  </div>

@@ -6,6 +6,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { CalculatorComponent } from './pages/calculator/calculator.component';
 import { DashBoardComponent } from './pages/dash-board/dash-board.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { UpdateProfileComponent } from './pages/update-profile/update-profile.component';
 
 export const routes: Routes = [
     {path:"",redirectTo:"login",pathMatch:'full'},
@@ -16,7 +17,8 @@ export const routes: Routes = [
             {path:"about",component:AboutComponent},
             {path:"calculate",component:CalculatorComponent},
             {path:"dashboard",component:DashBoardComponent},
-            {path:"profile",component:ProfileComponent}
+            {path:"profile",component:ProfileComponent},
+            {path:"updprofile",component:UpdateProfileComponent}
         ]},
     
 ];

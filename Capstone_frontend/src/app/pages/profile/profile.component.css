@@ -1,0 +1,15 @@
+.profile-container {
+    max-width: 800px;
+    margin: auto;
+  }
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  .card-body {
+    padding: 15px;
+  }
+  .form-group label {
+    font-weight: bold;
+  }
+  

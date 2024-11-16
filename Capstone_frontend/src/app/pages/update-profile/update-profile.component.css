@@ -1,0 +1,24 @@
+.update-profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .update-profile-container h2 {
+    font-size: 1.8rem;
+    color: #333;
+  }
+  form {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  .form-control {
+    border-radius: 5px;
+    box-shadow: none;
+  }
+  button {
+    background-color: #007bff;
+    border: none;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  

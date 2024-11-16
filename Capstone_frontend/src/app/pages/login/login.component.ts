@@ -51,7 +51,7 @@ export class LoginComponent {
       if (res.isSuccess) {
         alert("Login Success");
         this.router.navigateByUrl('home');
-        localStorage.setItem("userid",res.result.user.id);
+        localStorage.setItem("user",JSON.stringify(res.result.user));
         localStorage.setItem("token", res.result.token);
         localStorage.setItem("role", res.result.role);
         this.role = res.result.role;
