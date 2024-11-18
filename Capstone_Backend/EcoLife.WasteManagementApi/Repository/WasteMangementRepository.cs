@@ -39,8 +39,7 @@ namespace EcoLife.WasteManagementApi.Repository
       
 
         public async Task<WasteManagementEntity> postWasteMangementEntity( WasteManagementDto entity)
-        {
-            double? calculate = (entity.RecycledWaste + entity.CompostWaste + entity.LandfillWaste);
+        { 
             var ent = new WasteManagementEntity()
             {
                 UserId = entity.UserId,
@@ -48,7 +47,7 @@ namespace EcoLife.WasteManagementApi.Repository
                 CompostWaste = entity.CompostWaste,
                 LandfillWaste = entity.LandfillWaste,
                 RecordedDate = DateTime.UtcNow,
-                WasteEmission = (double)calculate
+                WasteEmission = (entity.RecycledWaste * 0.05) + (entity.CompostWaste * 0.03) + (entity.LandfillWaste * 0.35)
             };
             _db.WasteManagementEntities.Add(ent);
             await _db.SaveChangesAsync();

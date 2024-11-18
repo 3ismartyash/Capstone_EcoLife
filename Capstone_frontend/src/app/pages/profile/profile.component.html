@@ -1,73 +1,116 @@
 <div class="profile-container container mt-4">
-  
-    <h2 class="mb-3">User Profile</h2>
-    <form (ngSubmit)="updateProfile()" class="mb-5">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group mb-3">
-            <label for="name">Name</label>
-            <input
-              id="name"
-              type="text"
-              [(ngModel)]="user.name"
-              name="name"
-              class="form-control"
-              placeholder="Enter your name"
-              required
-            />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group mb-3">
-            <label for="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              [(ngModel)]="user.email"
-              name="email"
-              class="form-control"
-              placeholder="Enter your email"
-              required
-              disabled
-            />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group mb-3">
-            <label for="phone">Phone Number</label>
-            <input
-              id="phone"
-              type="text"
-              [(ngModel)]="user.phoneNumber"
-              name="phone"
-              class="form-control"
-              placeholder="Enter your phone number"
-              required
-            />
-          </div>
+  <!-- User Profile Section -->
+  <h2 class="mb-3">User Profile</h2>
+  <form class="mb-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            type="text"
+            [(ngModel)]="user.name"
+            name="name"
+            class="form-control"
+            placeholder="Enter your name"
+            readonly
+          />
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Update Profile</button>
-    </form>
-  
-
-    <h3>User Submissions</h3>
-    <div class="submission-list mt-3">
-        @for (submission of submissions; track $index) {
-      <div
-        
-        class="card mb-3"
-        style="width: 100%;"
-      >
-        <div class="card-body">
-          <h5 class="card-title">Submission #{{ submission.id }}</h5>
-          <p class="card-text"><strong>Date:</strong> {{ submission.date }}</p>
-          <p class="card-text"><strong>Details:</strong> {{ submission.details }}</p>
-          <button class="btn btn-secondary" (click)="editSubmission(submission)">
-            Edit Submission
-          </button>
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="user.email"
+            name="email"
+            class="form-control"
+            placeholder="Enter your email"
+            readonly
+            
+          />
         </div>
       </div>
-    }
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="phone">Phone Number</label>
+          <input
+            id="phone"
+            type="text"
+            [(ngModel)]="user.phoneNumber"
+            name="phone"
+            class="form-control"
+            placeholder="Enter your phone number"
+            readonly
+          />
+        </div>
+      </div>
     </div>
+    <button type="submit" class="btn btn-primary" (click)="updateProfile()">Update Profile</button>
+  </form>
+
+  <!-- User Submissions Table -->
+  <h3>User Submissions</h3>
+  <table mat-table [dataSource]="submissions" class="mat-elevation-z8">
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Submission Date </th>
+      <td mat-cell *matCellDef="let submission"> {{ submission.date }} </td>
+    </ng-container>
+    
+    <!-- Total Emissions Column -->
+    <ng-container matColumnDef="totalEmissions">
+      <th mat-header-cell *matHeaderCellDef> Total Emissions </th>
+      <td mat-cell *matCellDef="let submission"> {{ submission.totalEmissions }} kg CO2 </td>
+    </ng-container>
+    
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let submission">
+        <button mat-button (click)="expandRow(submission)">View Details</button>
+      </td>
+    </ng-container>
+
+    <!-- Table Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="['date', 'totalEmissions', 'action']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['date', 'totalEmissions', 'action'];"></tr>
+  </table>
+
+  <!-- Expanded Details for Selected Submission -->
+  @if(expandedSubmission){
+  <div>
+    <h3 class="mt-4">Details for Submission on {{ expandedSubmission.date }}</h3>
+    <table mat-table [dataSource]="expandedSubmission.details" class="mat-elevation-z8">
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let detail"> {{ detail.category }} </td>
+      </ng-container>
+      
+      <!-- Item Column -->
+      <ng-container matColumnDef="item">
+        <th mat-header-cell *matHeaderCellDef> Item </th>
+        <td mat-cell *matCellDef="let detail"> {{ detail.item }} </td>
+      </ng-container>
+      
+      <!-- Usage Column -->
+      <ng-container matColumnDef="usage">
+        <th mat-header-cell *matHeaderCellDef> Usage </th>
+        <td mat-cell *matCellDef="let detail"> {{ detail.usage }} </td>
+      </ng-container>
+      
+      <!-- Emissions Column -->
+      <ng-container matColumnDef="emissions">
+        <th mat-header-cell *matHeaderCellDef> Emissions </th>
+        <td mat-cell *matCellDef="let detail"> {{ detail.emissions }} kg CO2 </td>
+      </ng-container>
+
+      <!-- Expanded Details Row Definitions -->
+      <tr mat-header-row *matHeaderRowDef="['category', 'item', 'usage', 'emissions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['category', 'item', 'usage', 'emissions'];"></tr>
+    </table>
   </div>
+}
+</div>

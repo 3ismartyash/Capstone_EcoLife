@@ -38,7 +38,7 @@ namespace EcoLife.TransportationApi.Repository
 
         public async Task<TransportationEntity> postTransportationEntity(TransportationDto entity)
         {
-            double? calculate = (entity.PetrolUsage + entity.DieselUsage + entity.CNGUsage);
+            
             var ent = new TransportationEntity()
             {
                 UserId = entity.UserId,
@@ -46,7 +46,7 @@ namespace EcoLife.TransportationApi.Repository
                 DieselUsage = entity.DieselUsage,
                 CNGUsage = entity.CNGUsage,
                 RecordedDate = DateTime.UtcNow,
-                TransportEmission = (double)calculate
+                TransportEmission = (entity.PetrolUsage * 2.3 + entity.DieselUsage * 2.68 + entity.CNGUsage * 2.75)
             };
             _db.transportationEntities.Add(ent);
             await _db.SaveChangesAsync();

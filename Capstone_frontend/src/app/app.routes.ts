@@ -7,18 +7,21 @@ import { CalculatorComponent } from './pages/calculator/calculator.component';
 import { DashBoardComponent } from './pages/dash-board/dash-board.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UpdateProfileComponent } from './pages/update-profile/update-profile.component';
+import { RecommendationsComponent } from './pages/recommendations/recommendations.component';
+import { authGuard } from './services/auth.guard';
 
 export const routes: Routes = [
     {path:"",redirectTo:"login",pathMatch:'full'},
     {path:"login",component:LoginComponent},
     {path:"", component:NavBarComponent,
         children:[
-            {path:"home",component: HomeComponent},
-            {path:"about",component:AboutComponent},
-            {path:"calculate",component:CalculatorComponent},
-            {path:"dashboard",component:DashBoardComponent},
-            {path:"profile",component:ProfileComponent},
-            {path:"updprofile",component:UpdateProfileComponent}
+            {path:"home",component: HomeComponent,canActivate:[authGuard]},
+            {path:"about",component:AboutComponent,canActivate:[authGuard]},
+            {path:"calculate",component:CalculatorComponent,canActivate:[authGuard]},
+            {path:"dashboard",component:DashBoardComponent,canActivate:[authGuard]},
+            {path:"profile",component:ProfileComponent,canActivate:[authGuard]},
+            {path:"updateprofile",component:UpdateProfileComponent,canActivate:[authGuard],data:{role :"Admin"}},
+            {path:"recmd",component:RecommendationsComponent,canActivate:[authGuard]}
         ]},
     
 ];

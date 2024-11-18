@@ -46,7 +46,7 @@ namespace EcoLife.HouseHoldApi.Repository
                 LPGUsage = entity.LPGUsage,
                 CoalUsage = entity.CoalUsage,
                 RecordedDate = DateTime.UtcNow,
-                HouseHoldEmission = entity.LPGUsage + entity.CoalUsage + entity.ElectricityUsage
+                HouseHoldEmission = (entity.ElectricityUsage * 0.8275) + (entity.LPGUsage * 1.51) + (entity.CoalUsage * 2.86)
             };
             _db.HouseHoldEntities.Add(ent);
             await _db.SaveChangesAsync();   

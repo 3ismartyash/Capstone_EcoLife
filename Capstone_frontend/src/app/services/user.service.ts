@@ -9,11 +9,16 @@ export class UserService {
   constructor(private http: HttpClient) { }
   login(userobj: any)
   {
-    return this.http.post("https://localhost:3001/api/AuthApi/Login",userobj)
+    return this.http.post("https://localhost:3001/api/AuthApi/Login",userobj);
   }
 
   register(regobj: any)
   {
-    return this.http.post("https://localhost:3001/api/AuthApi/Register",regobj)
+    return this.http.post("https://localhost:3001/api/AuthApi/Register",regobj);
+  }
+
+  update(id:Number,updateobj: any)
+  {
+    return this.http.put("https://localhost:3001/api/AuthApi/Update/"+id,updateobj);
   }
 }

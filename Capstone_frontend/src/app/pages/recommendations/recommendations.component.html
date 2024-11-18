@@ -1,0 +1,25 @@
+<div [ngStyle]="{
+  'background-color': getLightColor(data.bgColor), 
+  'padding': '20px', 
+  'border': '3px solid ' + getDarkColor(data.bgColor)}"><mat-dialog-content>
+
+  
+<h2 mat-dialog-title>
+  @if (data.category == 'Good') {
+  <mat-icon aria-hidden="false" aria-label="Good">thumb_up</mat-icon>}
+  @else if (data.category == 'Satisfactory') {<mat-icon  aria-hidden="false" aria-label="Satisfactory">check_circle</mat-icon>}
+  @else if (data.category == 'Moderate') {<mat-icon  aria-hidden="false" aria-label="Moderate">access_alarm</mat-icon>}
+  @else if (data.category == 'Poor') {<mat-icon  aria-hidden="false" aria-label="Poor">warning</mat-icon>}
+  @else if (data.category == 'Very Poor') {<mat-icon  aria-hidden="false" aria-label="Very Poor">error_outline</mat-icon>}
+ @else if (data.category == 'Severe') {<mat-icon  aria-hidden="false" aria-label="Severe">cancel</mat-icon>}
+
+ {{ data.category }}</h2>
+  <p>{{ data.recommendationMessage }}</p>
+
+
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]>Close</button>
+</mat-dialog-actions>
+</mat-dialog-content> 
+</div>
+

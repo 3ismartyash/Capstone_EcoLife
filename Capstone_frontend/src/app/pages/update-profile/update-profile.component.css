@@ -22,3 +22,93 @@
     background-color: #0056b3;
   }
   
+
+  /* Modal content styling */
+.modal-content {
+  position: relative;
+  margin: auto;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  max-width: 500px; /* Width limit for the modal */
+  width: 90%; /* Responsive width */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Elevated shadow */
+  border: none;
+  overflow: hidden; /* Prevent content overflow */
+}
+
+/* Compact header styling */
+.modal-header {
+  background-color: #007bff; /* Primary color */
+  color: #fff;
+  font-size: 1.25rem; /* Smaller font size */
+  font-weight: 600; /* Slightly reduced font weight */
+  padding: 0.75rem 1rem; /* Less padding for a compact look */
+}
+
+.modal-header .btn-close {
+  color: #fff;
+  opacity: 0.8;
+}
+
+.modal-header .btn-close:hover {
+  opacity: 1;
+}
+
+/* Body styling remains the same */
+.modal-body {
+  padding: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+}
+
+/* Footer styling remains the same */
+.modal-footer {
+  padding: 1rem;
+  background-color: #f8f9fa; /* Light footer background */
+  border-top: 1px solid #dee2e6; /* Subtle top border */
+}
+
+.modal-footer .btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+}
+
+.modal-footer .btn-primary {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+}
+
+/* Smooth animations */
+.modal.fade .modal-dialog {
+  opacity: 0;
+  transform: scale(0.9); /* Slightly smaller at start */
+  transition: all 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  opacity: 1;
+  transform: scale(1); /* Full size when shown */
+}
+
+.text-center h6 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.text-center a {
+  font-size: 1rem;       /* Adjust font size */
+  font-weight: bold;     /* Bold text for emphasis */
+  color: #007bff;        /* Default Bootstrap primary color */
+  text-decoration: none; /* Remove underline */
+}
+
+.text-center a:hover {
+  color: #0056b3;        /* Darker shade on hover */
+  text-decoration: underline; /* Underline for hover effect */
+}

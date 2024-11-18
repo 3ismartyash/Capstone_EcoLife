@@ -3,6 +3,7 @@ using EcoLife.AuthAPi.Models;
 using EcoLife.AuthAPi.Models.Dto;
 using EcoLife.AuthAPi.Service.IService;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace MicroServicesExample.Services.AuthApi.Service
 {
@@ -12,7 +13,7 @@ namespace MicroServicesExample.Services.AuthApi.Service
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly RoleManager<ApplicationRole> _roleManager;
-        public AuthService(UserDbContext db, IJwtTokenGenerator jwtTokenGenerator,UserManager<ApplicationUser> userManager,RoleManager<ApplicationRole> roleManager)
+        public AuthService(UserDbContext db, IJwtTokenGenerator jwtTokenGenerator, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             _db = db;
             _userManager = userManager;
@@ -20,6 +21,23 @@ namespace MicroServicesExample.Services.AuthApi.Service
             _roleManager = roleManager;
         }
 
+        public Task<List<UserDto>> GetUsers()
+        {
+
+            return _db.Users
+       .Select(user => new UserDto
+       {
+           Id = user.Id,
+           Name = user.Name,
+           Email = user.Email,
+           PhoneNumber = user.PhoneNumber
+       })
+       .ToListAsync();
+        }
+        public Task<List<ApplicationRole>> GetRoles()
+        {
+            return _db.Roles.ToListAsync();
+        }
 
         public async Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
         {
@@ -74,7 +92,7 @@ namespace MicroServicesExample.Services.AuthApi.Service
                             _roleManager.CreateAsync(new ApplicationRole { Name = roleName }).GetAwaiter().GetResult();
                         }
                         await _userManager.AddToRoleAsync(user, roleName);
-                        
+
                     }
                     else
                     {
@@ -84,10 +102,10 @@ namespace MicroServicesExample.Services.AuthApi.Service
                             _roleManager.CreateAsync(new ApplicationRole { Name = roleName }).GetAwaiter().GetResult();
                         }
                         await _userManager.AddToRoleAsync(user, roleName);
-                        
+
                     }
                     return "";
-                    
+
                 }
                 else
                 {
@@ -98,6 +116,33 @@ namespace MicroServicesExample.Services.AuthApi.Service
             {
             }
             return "Error Encountered";
+        }
+
+        public async Task<UserDto> UpdateProfile(int userid, UpdateRequestDto updateRequestDto)
+        {
+
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userid);
+            if (user != null)
+            {
+                user.UserName = updateRequestDto.Email;
+                user.Email = updateRequestDto.Email;
+                user.NormalizedEmail = updateRequestDto.Email.ToUpper();
+                user.Name = updateRequestDto.Name;
+                user.PhoneNumber = updateRequestDto.PhoneNumber;
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    UserDto userResponse = new UserDto()
+                    {
+                        Id = user.Id,
+                        Email = user.Email,
+                        Name = user.Name,
+                        PhoneNumber = user.PhoneNumber
+                    };
+                    return userResponse;
+                }
+            }
+            return null;
         }
     }
 }

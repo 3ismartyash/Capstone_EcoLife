@@ -17,6 +17,21 @@ namespace EcoLife.AuthAPi.Controllers
             _response = new();
         }
 
+        [HttpGet("Users")]
+        public async Task<IActionResult> GetUsers()
+        {
+            _response.Result = await _authService.GetUsers();
+            return Ok(_response);
+        }
+
+
+        [HttpGet("Roles")]
+        public async Task<IActionResult> GetRoles()
+        {
+            _response.Result = await _authService.GetRoles();
+            return Ok(_response);
+        }
+
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegistrationRequestDto model)
         {
@@ -43,5 +58,21 @@ namespace EcoLife.AuthAPi.Controllers
             _response.Result = loginResponse;
             return Ok(_response);
         }
+
+        [HttpPut("Update/{userid}")]
+        public async Task<IActionResult> Update(int userid,UpdateRequestDto model)
+        {
+            _response.Result = await _authService.UpdateProfile(userid, model);
+            if(_response.Result == null)
+            {
+                _response.IsSuccess = false;
+                _response.Message = "Error while updating";
+                return BadRequest(_response);
+            }
+           
+            _response.Message = "Updated profile";
+            return Ok(_response);
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using EcoLife.AuthAPi.Models.Dto;
+﻿using EcoLife.AuthAPi.Models;
+using EcoLife.AuthAPi.Models.Dto;
 
 namespace EcoLife.AuthAPi.Service.IService
 {
@@ -6,6 +7,9 @@ namespace EcoLife.AuthAPi.Service.IService
     {
         Task<string> Register(RegistrationRequestDto registrationRequestDto);
         Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
+        Task<UserDto> UpdateProfile(int userId,UpdateRequestDto updateRequestDto);
+        Task<List<UserDto>> GetUsers();
+        Task<List<ApplicationRole>> GetRoles();
         
     }
 }

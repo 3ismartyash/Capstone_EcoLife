@@ -1,66 +1,115 @@
 <div class="update-profile-container container mt-4">
-    <h2 class="mb-4 text-center">Update Profile</h2>
-    <form (ngSubmit)="onSubmit()" class="shadow p-4 rounded">
-      <div class="form-group mb-3">
-        <label for="name">Name</label>
-        <input
-          id="name"
-          type="text"
-          [(ngModel)]="user.name"
-          name="name"
-          class="form-control"
-          placeholder="Enter your name"
-          required
-        />
+  <h2 class="mb-4 text-center">Update Profile</h2>
+  <form class="shadow p-4 rounded">
+    <div class="form-group mb-3">
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="updateduser.name"
+        name="name"
+        class="form-control"
+        placeholder="Enter your name"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        [(ngModel)]="updateduser.email"
+        name="email"
+        class="form-control"
+        placeholder="Enter your email"
+        required
+        disabled
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="phone">Phone Number</label>
+      <input
+        id="phone"
+        type="text"
+        [(ngModel)]="updateduser.phoneNumber"
+        name="phone"
+        class="form-control"
+        placeholder="Enter your phone number"
+        required
+      />
+    </div>
+    @if(isConfirm){
+      <div  class="text-center mb-3">
+        <h6 class="text-danger">{{ errorMessage }}</h6>
       </div>
-      <div class="form-group mb-3">
-        <label for="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          [(ngModel)]="user.email"
-          name="email"
-          class="form-control"
-          placeholder="Enter your email"
-          required
-          disabled
-        />
-      </div>
-      <div class="form-group mb-3">
-        <label for="phone">Phone Number</label>
-        <input
-          id="phone"
-          type="text"
-          [(ngModel)]="user.phoneNumber"
-          name="phone"
-          class="form-control"
-          placeholder="Enter your phone number"
-          required
-        />
-      </div>
-      <div class="form-group mb-3">
-        <label for="password">Change Password</label>
-        <input
-          id="password"
-          type="password"
-          [(ngModel)]="user.password"
-          name="password"
-          class="form-control"
-          placeholder="Enter new password"
-        />
-      </div>
-      <div class="form-group mb-3">
-        <label for="confirmPassword">Confirm Password</label>
-        <input
-          id="confirmPassword"
-          type="password"
-          [(ngModel)]="confirmPassword"
-          name="confirmPassword"
-          class="form-control"
-          placeholder="Re-enter new password"
-        />
-      </div>
-      <button type="submit" class="btn btn-primary w-100">Save Changes</button>
-    </form>
-  </div>
+      } 
+      @if(Confimed){
+        <div class="text-center mb-3">
+          <h6 class="text-success">{{ Message }}</h6>
+        </div>
+      }
+    <button
+      type="button"
+      class="btn btn-primary w-100"
+      data-bs-toggle="modal"
+      data-bs-target="#confirmPasswordModal"
+    >
+      Save Changes
+    </button>
+  </form>
   
+</div>
+<div class="text-center mt-3">
+  <a class="btn btn-link" (click)="profilepage()">Go Back to Profile Page</a>
+</div>
+
+<div
+  class="modal fade"
+  id="confirmPasswordModal"
+  tabindex="-1"
+  aria-labelledby="confirmPasswordModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered custom-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmPasswordModalLabel">
+          Confirm Password
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group mb-3">
+            <label for="currentPassword">Current Password</label>
+            <input
+              type="password"
+              id="currentPassword"
+              [(ngModel)]="confirmation.password"
+              name="currentPassword"
+              class="form-control"
+              placeholder="Enter your current password"
+              required
+            />
+          </div>
+        </form>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            (click)="confirmPassword()"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
