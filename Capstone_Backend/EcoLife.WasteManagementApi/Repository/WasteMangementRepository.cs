@@ -39,14 +39,33 @@ namespace EcoLife.WasteManagementApi.Repository
       
 
         public async Task<WasteManagementEntity> postWasteMangementEntity( WasteManagementDto entity)
-        { 
+        {
+            var userId = entity.UserId;
+
+            var currentMonth = entity.RecordedDate.Month;
+            var currentYear = entity.RecordedDate.Year;
+
+            var existingRecord = await _db.WasteManagementEntities
+                .FirstOrDefaultAsync(h => h.UserId == userId &&
+                                     h.RecordedDate.Month == currentMonth &&
+                                     h.RecordedDate.Year == currentYear);
+            if (existingRecord != null)
+            {
+                existingRecord.LandfillWaste = entity.LandfillWaste;
+                existingRecord.RecycledWaste = entity.RecycledWaste;
+                existingRecord.CompostWaste = entity.CompostWaste;
+                existingRecord.WasteEmission = (entity.RecycledWaste * 0.05) + (entity.CompostWaste * 0.03) + (entity.LandfillWaste * 0.35);
+                existingRecord.RecordedDate = entity.RecordedDate;
+                await _db.SaveChangesAsync();
+                return existingRecord;
+            }
             var ent = new WasteManagementEntity()
             {
                 UserId = entity.UserId,
                 RecycledWaste = entity.RecycledWaste,
                 CompostWaste = entity.CompostWaste,
                 LandfillWaste = entity.LandfillWaste,
-                RecordedDate = DateTime.UtcNow,
+                RecordedDate = entity.RecordedDate,
                 WasteEmission = (entity.RecycledWaste * 0.05) + (entity.CompostWaste * 0.03) + (entity.LandfillWaste * 0.35)
             };
             _db.WasteManagementEntities.Add(ent);

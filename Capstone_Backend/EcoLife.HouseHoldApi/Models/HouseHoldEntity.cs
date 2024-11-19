@@ -21,7 +21,7 @@ namespace EcoLife.HouseHoldApi.Models
         public double CoalUsage { get; set; }
 
         [Required]
-        public DateTime RecordedDate { get; set; }
+        public DateOnly RecordedDate { get; set; }
         public double HouseHoldEmission { get; set; }
         
     }

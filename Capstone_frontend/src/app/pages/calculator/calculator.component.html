@@ -4,10 +4,13 @@
     
     <!-- General Recorded Date Section -->
     <div class="mb-4">
-      <label for="recordedDate" class="form-label">Recorded Date</label>
-      <input type="text" 
-      [(ngModel)]="recDate" 
-      class="form-control" id="recordedDate" name="recordedDate"  readonly>
+      <label for="recDate" class="form-label">Recorded Date</label>
+      <input type="date" 
+      [(ngModel)]="household.RecordedDate"
+      [(ngModel)]="transportation.RecordedDate"
+      [(ngModel)]="wasteManagement.RecordedDate"
+      [(ngModel)]="totalemission.recordedDate"
+      class="form-control" id="recDate" name="recDate">
     </div>
 
     <!-- Household Section -->

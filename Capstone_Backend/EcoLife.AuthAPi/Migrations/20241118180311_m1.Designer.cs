@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoLife.AuthAPi.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20241114062920_first-migration")]
-    partial class firstmigration
+    [Migration("20241118180311_m1")]
+    partial class m1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

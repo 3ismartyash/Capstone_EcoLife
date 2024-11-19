@@ -7,23 +7,21 @@ import { Injectable } from '@angular/core';
 export class WasteManagementService {
 
   constructor(private http:HttpClient) { }
-  // getAll()
-  // {
-  //   return this.http.get("");
-  // }
+ 
 
-  // getById()
-  // {
-  //   return this.http.get("");
-  // }
+  getById(userid:Number)
+  {
+    return this.http.get("https://localhost:3005/wastemanagement/"+userid);
+  }
+  
 
   add(waste:any)
   {
-    return this.http.post("https://localhost:3004/api/WasteManagement",waste);
+    return this.http.post("https://localhost:3005/wastemanagement",waste);
   }
 
   // update()
-  // {
+  // { 
   //   return this.http.put("",);
   // }
 

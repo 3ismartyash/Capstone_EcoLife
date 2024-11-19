@@ -1,71 +1,114 @@
-<!-- Admin View - Submissions from All Users -->
-<div class="admin-container container mt-4">
-    <h2 class="mb-3">All User Submissions</h2>
-  
-    <!-- Admin Submissions Table -->
-    <table mat-table [dataSource]="allSubmissions" class="mat-elevation-z8">
-      <!-- Columns -->
-      <ng-container matColumnDef="userName">
-        <th mat-header-cell *matHeaderCellDef> User Name </th>
-        <td mat-cell *matCellDef="let submission"> {{ submission.userName }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="userEmail">
-        <th mat-header-cell *matHeaderCellDef> User Email </th>
-        <td mat-cell *matCellDef="let submission"> {{ submission.userEmail }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef> Submission Date </th>
-        <td mat-cell *matCellDef="let submission"> {{ submission.date }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="totalEmissions">
-        <th mat-header-cell *matHeaderCellDef> Total Emissions </th>
-        <td mat-cell *matCellDef="let submission"> {{ submission.totalEmissions }} kg CO2 </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let submission">
-          <button mat-button (click)="expandRow(submission)">View Details</button>
-          <!-- Additional actions, like Edit or Delete, can be added -->
-          <button mat-button color="warn" (click)="deleteSubmission(submission)">Delete</button>
-        </td>
-      </ng-container>
-  
-      <!-- Table Rows -->
-      <tr mat-header-row *matHeaderRowDef="['userName', 'userEmail', 'date', 'totalEmissions', 'action']"></tr>
-      <tr mat-row *matRowDef="let row; columns: ['userName', 'userEmail', 'date', 'totalEmissions', 'action'];"></tr>
-    </table>
-  
-    <!-- Expanded Submission Details (if a row is expanded) -->
-    @if(expandedSubmission){
-    <div >
-      <h3>Details for {{ expandedSubmission.userName }} - {{ expandedSubmission.date }}</h3>
-      <!-- <pre>{{ expandedSubmission | json }}</pre> -->
-      <table mat-table [dataSource]="expandedSubmission.details" class="mat-elevation-z8">
-        <ng-container matColumnDef="category">
-          <th mat-header-cell *matHeaderCellDef> Category </th>
-          <td mat-cell *matCellDef="let detail"> {{ detail.category }} </td>
-        </ng-container>
-        <ng-container matColumnDef="item">
-          <th mat-header-cell *matHeaderCellDef> Item </th>
-          <td mat-cell *matCellDef="let detail"> {{ detail.item }} </td>
-        </ng-container>
-        <ng-container matColumnDef="usage">
-          <th mat-header-cell *matHeaderCellDef> Usage </th>
-          <td mat-cell *matCellDef="let detail"> {{ detail.usage }} </td>
-        </ng-container>
-        <ng-container matColumnDef="emissions">
-          <th mat-header-cell *matHeaderCellDef> Emissions </th>
-          <td mat-cell *matCellDef="let detail"> {{ detail.emissions }} kg CO2 </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="['category', 'item', 'usage', 'emissions']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['category', 'item', 'usage', 'emissions'];"></tr>
-      </table>
+<!-- User Table -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phoneNumber }}</td>
+      <td>
+        <button class="btn btn-info" (click)="viewSubmissions(user.id)">View Submissions</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal for View Submissions -->
+<div *ngIf="selectedUser" class="modal">
+  <div class="modal-content">
+    <h2>View Submissions for {{ selectedUser.name }}</h2>
+    <div class="tabs">
+      <button (click)="showCategory('household')">Household</button>
+      <button (click)="showCategory('transport')">Transport</button>
+      <button (click)="showCategory('waste')">Waste</button>
     </div>
-}
+
+    <!-- Household Data -->
+    <!-- Household Data -->
+<div *ngIf="selectedCategory === 'household'">
+  <h3>Household Data</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Recorded Date</th>
+        <th>Electricity Usage</th>
+        <th>LPG Usage</th>
+        <th>Coal Usage</th>
+        <th>Household Emissions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of selectedUser.household">
+        <td>{{ record.recordedDate }}</td>
+        <td>{{ record.electricityUsage }}</td>
+        <td>{{ record.lpgUsage }}</td>
+        <td>{{ record.coalUsage }}</td>
+        <td>{{ record.houseHoldEmission }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div *ngIf="selectedCategory === 'transport'">
+  <h3>Transport Data</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Recorded Date</th>
+        <th>Petrol Used</th>
+        <th>Diesel Used</th>
+        <th>CNG Used</th>
+        <th>Transport Emission</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of selectedUser.transport">
+        <td>{{ record.recordedDate }}</td>
+        <td>{{ record.petrolUsage }}</td>
+        <td>{{ record.dieselUsage }}</td>
+        <td>{{ record.cngUsage }}</td>
+        <td>{{ record.transportEmission  }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Waste Data -->
+<div *ngIf="selectedCategory === 'waste'">
+  <h3>Waste Data</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Recorded Date</th>
+        <th>Recycled Waste</th>
+        <th>Compost waste</th>
+        <th>Landfill waste</th>
+        <th>Waste management emission</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of selectedUser.waste">
+        <td>{{ record.recordedDate }}</td>
+        <td>{{ record.recycledWaste }}</td>
+        <td>{{ record.compostWaste}}</td>
+        <td>{{ record.landfillWaste }}</td>
+        <td>{{ record.wasteEmission  }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+    <button class="btn btn-secondary" (click)="closeModal()">Close</button>
   </div>
-  
+</div>

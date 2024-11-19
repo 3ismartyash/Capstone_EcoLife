@@ -33,7 +33,7 @@ export class LoginComponent {
   {
     event.preventDefault();  // Prevents the default link behavior
     this.isRegisterMode = true;
-    }
+    }   
 
   onRegister() {
     this.userService.register(this.regobj).subscribe((res: any) => {

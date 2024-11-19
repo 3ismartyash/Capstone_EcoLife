@@ -1,57 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {  MatTableModule } from '@angular/material/table';
+import { UserService } from '../../services/user.service';
+import { forkJoin } from 'rxjs';
+import { HouseHoldService } from '../../services/house-hold.service';
+import { TransportService } from '../../services/transport.service';
+import { WasteManagementService } from '../../services/waste-management.service';
+import { RecommendationService } from '../../services/recommendation.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dash-board',
   standalone: true,
-  imports: [MatButtonModule,MatTableModule],
+  imports: [CommonModule,MatButtonModule,MatTableModule],
   templateUrl: './dash-board.component.html',
   styleUrl: './dash-board.component.css'
 })
-export class DashBoardComponent {
-allSubmissions: any= [
+export class DashBoardComponent implements OnInit{
+users: any;
+viewSubmissions(userId: number) {
+  this.showCategory('household');
+  this.selectedUser={
+    household:[],
+    transport : [],
+    waste:[]
+  };
+  if(this.selectedCategory='household')
   {
-    userName: 'John Doe',
-    userEmail: 'john.doe@example.com',
-    date: '2024-11-17',
-    totalEmissions: 120.5,
-    details: [
-      { category: 'Household', item: 'Electricity', usage: '350 kWh', emissions: 80.5 },
-      { category: 'Transport', item: 'Petrol', usage: '40 liters', emissions: 30 },
-      { category: 'Waste', item: 'Landfill', usage: '20 kg', emissions: 10 }
-    ]
-  },
-  {
-    userName: 'Jane Smith',
-    userEmail: 'jane.smith@example.com',
-    date: '2024-11-16',
-    totalEmissions: 95.3,
-    details: [
-      { category: 'Household', item: 'Electricity', usage: '250 kWh', emissions: 50 },
-      { category: 'Transport', item: 'Diesel', usage: '30 liters', emissions: 25 },
-      { category: 'Waste', item: 'Recycled', usage: '15 kg', emissions: 5.3 }
-    ]
-  },
-  {
-    userName: 'Michael Johnson',
-    userEmail: 'michael.johnson@example.com',
-    date: '2024-11-15',
-    totalEmissions: 200.0,
-    details: [
-      { category: 'Household', item: 'Coal', usage: '50 kg', emissions: 60 },
-      { category: 'Transport', item: 'CNG', usage: '15 kg', emissions: 10 },
-      { category: 'Waste', item: 'Compost', usage: '25 kg', emissions: 5 }
-    ]
+    this.housholdService.getById(userId).subscribe((userData) => {
+      this.selectedUser.household = userData;
+    });
   }
-];;
-expandedSubmission: any;
-deleteSubmission(_t32: any) {
-throw new Error('Method not implemented.');
+  if(this.selectedCategory='transport')
+  {
+    this.transportService.getById(userId).subscribe((userData) => {
+      this.selectedUser.transport = userData;
+      console.log(userData);
+    });
+  }
+  if(this.selectedCategory='waste')
+  {
+    this.wasteManagementService.getById(userId).subscribe((userData) => {
+      this.selectedUser.waste = userData;
+      console.log(userData);
+
+    });
+  }
+  
 }
-expandRow(submission: any) {
-  this.expandedSubmission = submission; // Store expanded submission data
+
+showCategory(category: string) {
+  this.selectedCategory = category;
 }
+
+closeModal() {
+  this.selectedUser = undefined;
+  this.selectedCategory = null;
+}
+selectedCategory: any;
+selectedUser: any;
+  ngOnInit(): void {
+    this.userService.getUsers().subscribe((res:any)=>{
+      this.users= res.result;
+    });
+  }
+
+  userService = inject(UserService);
+ 
+  housholdService= inject(HouseHoldService);
+  transportService=inject(TransportService);
+  wasteManagementService=inject(WasteManagementService);
+  recommendationService = inject(RecommendationService);
 
 
 }

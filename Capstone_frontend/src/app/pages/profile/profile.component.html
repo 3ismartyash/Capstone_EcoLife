@@ -51,66 +51,104 @@
   </form>
 
   <!-- User Submissions Table -->
-  <h3>User Submissions</h3>
-  <table mat-table [dataSource]="submissions" class="mat-elevation-z8">
-    <!-- Date Column -->
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef> Submission Date </th>
-      <td mat-cell *matCellDef="let submission"> {{ submission.date }} </td>
-    </ng-container>
-    
-    <!-- Total Emissions Column -->
-    <ng-container matColumnDef="totalEmissions">
-      <th mat-header-cell *matHeaderCellDef> Total Emissions </th>
-      <td mat-cell *matCellDef="let submission"> {{ submission.totalEmissions }} kg CO2 </td>
-    </ng-container>
-    
-    <!-- Action Column -->
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Action </th>
-      <td mat-cell *matCellDef="let submission">
-        <button mat-button (click)="expandRow(submission)">View Details</button>
-      </td>
-    </ng-container>
+  <h3>User Submissions</h3><div class="btn-group mb-3" role="group">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      [class.active]="selectedCategory === 'household'"
+      (click)="selectedCategory = 'household'"
+    >
+      Household
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      [class.active]="selectedCategory === 'transport'"
+      (click)="selectedCategory = 'transport'"
+    >
+      Transport
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      [class.active]="selectedCategory === 'waste'"
+      (click)="selectedCategory = 'waste'"
+    >
+      Waste
+    </button>
+  </div>
 
-    <!-- Table Row Definitions -->
-    <tr mat-header-row *matHeaderRowDef="['date', 'totalEmissions', 'action']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['date', 'totalEmissions', 'action'];"></tr>
-  </table>
-
-  <!-- Expanded Details for Selected Submission -->
-  @if(expandedSubmission){
-  <div>
-    <h3 class="mt-4">Details for Submission on {{ expandedSubmission.date }}</h3>
-    <table mat-table [dataSource]="expandedSubmission.details" class="mat-elevation-z8">
-      <!-- Category Column -->
-      <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef> Category </th>
-        <td mat-cell *matCellDef="let detail"> {{ detail.category }} </td>
-      </ng-container>
-      
-      <!-- Item Column -->
-      <ng-container matColumnDef="item">
-        <th mat-header-cell *matHeaderCellDef> Item </th>
-        <td mat-cell *matCellDef="let detail"> {{ detail.item }} </td>
-      </ng-container>
-      
-      <!-- Usage Column -->
-      <ng-container matColumnDef="usage">
-        <th mat-header-cell *matHeaderCellDef> Usage </th>
-        <td mat-cell *matCellDef="let detail"> {{ detail.usage }} </td>
-      </ng-container>
-      
-      <!-- Emissions Column -->
-      <ng-container matColumnDef="emissions">
-        <th mat-header-cell *matHeaderCellDef> Emissions </th>
-        <td mat-cell *matCellDef="let detail"> {{ detail.emissions }} kg CO2 </td>
-      </ng-container>
-
-      <!-- Expanded Details Row Definitions -->
-      <tr mat-header-row *matHeaderRowDef="['category', 'item', 'usage', 'emissions']"></tr>
-      <tr mat-row *matRowDef="let row; columns: ['category', 'item', 'usage', 'emissions'];"></tr>
+  <!-- Household Data -->
+  <div *ngIf="selectedCategory === 'household'">
+    <h3>Household Data</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Recorded Date</th>
+          <th>Electricity Usage</th>
+          <th>LPG Usage</th>
+          <th>Coal Usage</th>
+          <th>Emissions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of userSubmissions.household">
+          <td>{{ record.recordedDate  }}</td>
+          <td>{{ record.electricityUsage }}</td>
+          <td>{{ record.lpgUsage }}</td>
+          <td>{{ record.coalUsage }}</td>
+          <td>{{ record.houseHoldEmission }}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
-}
-</div>
+
+  <!-- Transport Data -->
+  <div *ngIf="selectedCategory === 'transport'">
+    <h3>Transport Data</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Recorded Date</th>
+          <th>Petrol Used</th>
+          <th>Diesel Used</th>
+          <th>CNG Used</th>
+          <th>Emissions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of userSubmissions.transport">
+          <td>{{ record.recordedDate}}</td>
+          <td>{{ record.petrolUsage }}</td>
+          <td>{{ record.dieselUsage }}</td>
+          <td>{{ record.cngUsage }}</td>
+          <td>{{ record.transportEmission }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Waste Data -->
+  <div *ngIf="selectedCategory === 'waste'">
+    <h3>Waste Data</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Recorded Date</th>
+          <th>Recycled Waste</th>
+          <th>Compost Waste</th>
+          <th>Landfill Waste</th>
+          <th>Emissions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of userSubmissions.waste">
+          <td>{{ record.recordedDate }}</td>
+          <td>{{ record.recycledWaste }}</td>
+          <td>{{ record.compostWaste }}</td>
+          <td>{{ record.landfillWaste }}</td>
+          <td>{{ record.wasteEmission }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

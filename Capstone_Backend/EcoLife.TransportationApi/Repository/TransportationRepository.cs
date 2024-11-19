@@ -38,14 +38,32 @@ namespace EcoLife.TransportationApi.Repository
 
         public async Task<TransportationEntity> postTransportationEntity(TransportationDto entity)
         {
-            
+            var userId = entity.UserId;
+
+            var currentMonth = entity.RecordedDate.Month;
+            var currentYear = entity.RecordedDate.Year;
+
+            var existingRecord = await _db.transportationEntities
+                .FirstOrDefaultAsync(h => h.UserId == userId &&
+                                     h.RecordedDate.Month == currentMonth &&
+                                     h.RecordedDate.Year == currentYear);
+            if (existingRecord != null)
+            {
+                existingRecord.PetrolUsage = entity.PetrolUsage;
+                existingRecord.DieselUsage = entity.DieselUsage;
+                existingRecord.CNGUsage = entity.CNGUsage;
+                existingRecord.TransportEmission = (entity.PetrolUsage * 2.3 + entity.DieselUsage * 2.68 + entity.CNGUsage * 2.75);
+                existingRecord.RecordedDate = entity.RecordedDate;
+                await _db.SaveChangesAsync();
+                return existingRecord;
+            }
             var ent = new TransportationEntity()
             {
                 UserId = entity.UserId,
                 PetrolUsage = entity.PetrolUsage,
                 DieselUsage = entity.DieselUsage,
                 CNGUsage = entity.CNGUsage,
-                RecordedDate = DateTime.UtcNow,
+                RecordedDate = entity.RecordedDate,
                 TransportEmission = (entity.PetrolUsage * 2.3 + entity.DieselUsage * 2.68 + entity.CNGUsage * 2.75)
             };
             _db.transportationEntities.Add(ent);

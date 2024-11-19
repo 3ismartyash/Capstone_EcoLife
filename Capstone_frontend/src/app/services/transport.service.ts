@@ -12,18 +12,18 @@ export class TransportService {
   //   return this.http.get("");
   // }
 
-  // getById()
-  // {
-  //   return this.http.get("");
-  // }
+  getById(userid:Number)
+  {
+    return this.http.get("https://localhost:3005/transportation/"+userid);
+  }
 
  add(transport:any)
   {
-    return this.http.post("https://localhost:3003/api/Transportation",transport);
+    return this.http.post("https://localhost:3005/transportation",transport);
   }
 
   // update()
-  // {
+  // { 
   //   return this.http.put("",);
   // }
 

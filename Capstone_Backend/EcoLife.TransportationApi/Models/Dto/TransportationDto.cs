@@ -6,6 +6,8 @@
         public double PetrolUsage { get; set; }
         public double DieselUsage { get; set; }
         public double CNGUsage { get; set; }
-        
+        public DateOnly RecordedDate { get; set; }
+
+
     }
 }

@@ -36,8 +36,8 @@ namespace EcoLife.WasteManagementApi.Migrations
                     b.Property<double>("LandfillWaste")
                         .HasColumnType("float");
 
-                    b.Property<DateTime>("RecordedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("RecordedDate")
+                        .HasColumnType("date");
 
                     b.Property<double>("RecycledWaste")
                         .HasColumnType("float");

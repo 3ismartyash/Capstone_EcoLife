@@ -21,7 +21,7 @@ namespace EcoLife.HouseHoldApi.Migrations
                     ElectricityUsage = table.Column<double>(type: "float", nullable: false),
                     LPGUsage = table.Column<double>(type: "float", nullable: false),
                     CoalUsage = table.Column<double>(type: "float", nullable: false),
-                    RecordedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RecordedDate = table.Column<DateOnly>(type: "date", nullable: false),
                     HouseHoldEmission = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>

@@ -22,7 +22,7 @@ namespace EcoLife.TransportationApi.Models
 
         [Required]
        
-        public DateTime RecordedDate { get; set; }
+        public DateOnly RecordedDate { get; set; }
 
         public double TransportEmission { get; set; }
 

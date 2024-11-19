@@ -42,8 +42,8 @@ namespace EcoLife.HouseHoldApi.Migrations
                     b.Property<double>("LPGUsage")
                         .HasColumnType("float");
 
-                    b.Property<DateTime>("RecordedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("RecordedDate")
+                        .HasColumnType("date");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");

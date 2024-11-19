@@ -8,8 +8,12 @@ export class RecommendationService {
 
   constructor(private http : HttpClient) { }
 
+  getById(userid:Number)
+  {
+    return this.http.get("https://localhost:3005/recommendation/"+userid);
+  }
   add(recommend: any)
   {
-     return this.http.post("https://localhost:7236/api/Recommendation",recommend);
-  }
+     return this.http.post("https://localhost:3005/recommendation",recommend);
+  } 
 }

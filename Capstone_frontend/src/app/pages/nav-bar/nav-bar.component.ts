@@ -12,8 +12,7 @@ export class NavBarComponent {
   router = inject(Router);
   role = localStorage.getItem("role");
 onLogOut() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("role");
+  localStorage.clear();
   this.router.navigateByUrl("login");
 }
 

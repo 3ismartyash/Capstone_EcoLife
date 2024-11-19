@@ -18,10 +18,10 @@ export const routes: Routes = [
             {path:"home",component: HomeComponent,canActivate:[authGuard]},
             {path:"about",component:AboutComponent,canActivate:[authGuard]},
             {path:"calculate",component:CalculatorComponent,canActivate:[authGuard]},
-            {path:"dashboard",component:DashBoardComponent,canActivate:[authGuard]},
+            {path:"dashboard",component:DashBoardComponent,canActivate:[authGuard],data:{role :"Admin"}},
             {path:"profile",component:ProfileComponent,canActivate:[authGuard]},
-            {path:"updateprofile",component:UpdateProfileComponent,canActivate:[authGuard],data:{role :"Admin"}},
+            {path:"updateprofile",component:UpdateProfileComponent,canActivate:[authGuard]},
             {path:"recmd",component:RecommendationsComponent,canActivate:[authGuard]}
         ]},
-    
+     
 ];

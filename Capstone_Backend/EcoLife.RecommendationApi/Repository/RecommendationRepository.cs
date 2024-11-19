@@ -129,6 +129,28 @@ namespace EcoLife.RecommendationApi.Repository
         {
             var category = await Categorize(entity.TotalEmissions);
             var message = await Message(category);
+
+
+            var userId = entity.UserId;
+
+            var currentMonth = entity.RecordedDate.Month;
+            var currentYear = entity.RecordedDate.Year;
+
+            var existingRecord = await _db.RecomendationEntities
+                .FirstOrDefaultAsync(h => h.UserId == userId &&
+                                     h.RecordedDate.Month == currentMonth &&
+                                     h.RecordedDate.Year == currentYear);
+            if (existingRecord != null)
+            {
+                existingRecord.TotalEmissions = entity.TotalEmissions;
+                existingRecord.Category = category;
+                existingRecord.Message = message;
+
+                existingRecord.RecordedDate =entity.RecordedDate;
+                await _db.SaveChangesAsync();
+                return existingRecord;
+                    }
+            
             var ent = new RecomendationEntity()
             {
                 UserId = entity.UserId,
