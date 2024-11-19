@@ -1,0 +1,52 @@
+.aqi-container {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+  }
+  
+  .aqi-value {
+    font-size: 1.5rem; /* Reduced AQI font size */
+    font-weight: 600;
+    color: #e74c3c;
+  }
+  
+  .dominant-pollutant {
+    font-size: 1rem; /* Smaller font size for pollutant details */
+    font-weight: 500;
+  }
+  
+  .forecast-day {
+    font-size: 0.9rem; /* Smaller forecast text */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 5px 0;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .forecast-day:hover {
+    transform: scale(1.01);
+    background-color: #e3f2fd;
+  }
+  
+  select.form-select {
+    max-width: 350px;
+    margin: 0 ;
+    display: block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2, h4, h5 {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 0.95rem; /* General paragraph font size */
+  }
+  
+  label {
+    font-size: 1rem;
+  }
+  

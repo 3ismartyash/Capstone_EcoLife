@@ -1,0 +1,48 @@
+<div class="container my-5">
+    <h2 class="text-center text-primary mb-4">Air Quality Index</h2>
+  
+    <!-- Dropdown for city selection -->
+    <div class="form-group d-flex align-items-center mb-4">
+      <label for="city" class="me-3 fw-bold">Select City:</label>
+      <select
+        id="city"
+        [(ngModel)]="city"
+        (change)="fetchAirQuality()"
+        class="form-select shadow-sm"
+        style="max-width: 350px;"
+      >
+        <option *ngFor="let cityName of cities" [value]="cityName">
+          {{ cityName }}
+        </option>
+      </select>
+    </div>
+  
+    <!-- Air Quality Data -->
+    <div
+      *ngIf="airQualityData"
+      class="aqi-container bg-light p-3 mt-4 rounded shadow-sm"
+    >
+      <h4 class="text-success">{{ airQualityData.city.name }}</h4>
+      <p class="mb-1 text-muted">
+        <strong>Last Updated:</strong>
+        {{ airQualityData.time.iso | date: 'medium' }}
+      </p>
+      <p class="aqi-value fs-4 fw-bold text-danger">AQI: {{ airQualityData.aqi }}</p>
+      <p class="dominant-pollutant">
+        Dominant Pollutant: <span class="text-info">{{ airQualityData.dominentpol }}</span>
+      </p>
+  
+      <div class="forecast mt-3">
+        <h5 class="text-secondary">Forecast:</h5>
+        <div
+          class="forecast-day p-2 mb-2 rounded shadow-sm"
+          *ngFor="let day of airQualityData.forecast.daily.pm25"
+          style="background-color: #f8f9fa;"
+        >
+          <strong>{{ day.day }}</strong>:
+          <span>Min: {{ day.min }}, Max: {{ day.max }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

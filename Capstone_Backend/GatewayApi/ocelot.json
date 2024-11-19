@@ -4,6 +4,18 @@
   },
   "Routes": [
     {
+      "DownstreamPathTemplate": "/api/AirQuality/{city}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 3006
+        }
+      ],
+      "UpstreamPathTemplate": "/AirQuality/{city}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/HouseHold/{userid}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [

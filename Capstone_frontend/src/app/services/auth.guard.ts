@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   if (token != null) {
     if (route.data['role']) {
       if (route.data['role'] === role) { return true; }
-      else {
+      else { 
         router.navigateByUrl("home")
         return false;
       }

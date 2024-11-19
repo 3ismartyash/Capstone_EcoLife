@@ -1,7 +1,9 @@
 /* Hero Section */
 .hero-section {
   position: relative;
-  background: url(D:/Project/Capstone_EcoLife/Capstone_frontend/public/bg.png) no-repeat center center;
+  background: url(http://localhost:4200/bg.png) no-repeat center center;
+ 
+
   background-size: cover;  /* Ensures the entire image is visible without cropping */
   background-position: center center;  /* Keeps the image centered */
   color: white;

@@ -9,6 +9,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { UpdateProfileComponent } from './pages/update-profile/update-profile.component';
 import { RecommendationsComponent } from './pages/recommendations/recommendations.component';
 import { authGuard } from './services/auth.guard';
+import { AirQualityComponent } from './pages/air-quality/air-quality.component';
 
 export const routes: Routes = [
     {path:"",redirectTo:"login",pathMatch:'full'},
@@ -21,7 +22,8 @@ export const routes: Routes = [
             {path:"dashboard",component:DashBoardComponent,canActivate:[authGuard],data:{role :"Admin"}},
             {path:"profile",component:ProfileComponent,canActivate:[authGuard]},
             {path:"updateprofile",component:UpdateProfileComponent,canActivate:[authGuard]},
-            {path:"recmd",component:RecommendationsComponent,canActivate:[authGuard]}
+            {path:"recmd",component:RecommendationsComponent,canActivate:[authGuard]},
+            {path:"airquality",component:AirQualityComponent}
         ]},
      
 ];
