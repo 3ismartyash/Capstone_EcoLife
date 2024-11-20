@@ -47,14 +47,14 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="updateProfile()">Update Profile</button>
+    <button type="submit" class="btn btn-success" (click)="updateProfile()">Update Profile</button>
   </form>
 
   <!-- User Submissions Table -->
   <h3>User Submissions</h3><div class="btn-group mb-3" role="group">
     <button
       type="button"
-      class="btn btn-outline-primary"
+      class="btn btn-outline-success"
       [class.active]="selectedCategory === 'household'"
       (click)="selectedCategory = 'household'"
     >
@@ -62,7 +62,7 @@
     </button>
     <button
       type="button"
-      class="btn btn-outline-primary"
+      class="btn btn-outline-success"
       [class.active]="selectedCategory === 'transport'"
       (click)="selectedCategory = 'transport'"
     >
@@ -70,7 +70,7 @@
     </button>
     <button
       type="button"
-      class="btn btn-outline-primary"
+      class="btn btn-outline-success"
       [class.active]="selectedCategory === 'waste'"
       (click)="selectedCategory = 'waste'"
     >

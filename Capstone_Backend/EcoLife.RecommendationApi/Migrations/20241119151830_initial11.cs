@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EcoLife.RecommendationApi.Migrations
 {
     /// <inheritdoc />
-    public partial class m1 : Migration
+    public partial class initial11 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

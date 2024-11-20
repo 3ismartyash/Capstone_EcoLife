@@ -3,30 +3,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace EcoLife.WasteManagementApi.Migrations
+namespace EcoLife.TransportationApi.Migrations
 {
     /// <inheritdoc />
-    public partial class m1 : Migration
+    public partial class initial12 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "WasteManagementEntities",
+                name: "transportationEntities",
                 columns: table => new
                 {
-                    WasteManagementId = table.Column<int>(type: "int", nullable: false)
+                    TransportationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    RecycledWaste = table.Column<double>(type: "float", nullable: false),
-                    CompostWaste = table.Column<double>(type: "float", nullable: false),
-                    LandfillWaste = table.Column<double>(type: "float", nullable: false),
+                    PetrolUsage = table.Column<double>(type: "float", nullable: false),
+                    DieselUsage = table.Column<double>(type: "float", nullable: false),
+                    CNGUsage = table.Column<double>(type: "float", nullable: false),
                     RecordedDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    WasteEmission = table.Column<double>(type: "float", nullable: false)
+                    TransportEmission = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WasteManagementEntities", x => x.WasteManagementId);
+                    table.PrimaryKey("PK_transportationEntities", x => x.TransportationId);
                 });
         }
 
@@ -34,7 +34,7 @@ namespace EcoLife.WasteManagementApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "WasteManagementEntities");
+                name: "transportationEntities");
         }
     }
 }

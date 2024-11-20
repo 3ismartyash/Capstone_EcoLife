@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoLife.TransportationApi.Migrations
 {
     [DbContext(typeof(TransportationDbContext))]
-    [Migration("20241118180411_m1")]
-    partial class m1
+    [Migration("20241119151905_initial12")]
+    partial class initial12
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

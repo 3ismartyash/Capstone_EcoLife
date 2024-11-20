@@ -3,30 +3,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace EcoLife.HouseHoldApi.Migrations
+namespace EcoLife.WasteManagementApi.Migrations
 {
     /// <inheritdoc />
-    public partial class m1 : Migration
+    public partial class initialnow : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "HouseHoldEntities",
+                name: "WasteManagementEntities",
                 columns: table => new
                 {
-                    HouseHoldId = table.Column<int>(type: "int", nullable: false)
+                    WasteManagementId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    ElectricityUsage = table.Column<double>(type: "float", nullable: false),
-                    LPGUsage = table.Column<double>(type: "float", nullable: false),
-                    CoalUsage = table.Column<double>(type: "float", nullable: false),
+                    RecycledWaste = table.Column<double>(type: "float", nullable: false),
+                    CompostWaste = table.Column<double>(type: "float", nullable: false),
+                    LandfillWaste = table.Column<double>(type: "float", nullable: false),
                     RecordedDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    HouseHoldEmission = table.Column<double>(type: "float", nullable: false)
+                    WasteEmission = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HouseHoldEntities", x => x.HouseHoldId);
+                    table.PrimaryKey("PK_WasteManagementEntities", x => x.WasteManagementId);
                 });
         }
 
@@ -34,7 +34,7 @@ namespace EcoLife.HouseHoldApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "HouseHoldEntities");
+                name: "WasteManagementEntities");
         }
     }
 }
