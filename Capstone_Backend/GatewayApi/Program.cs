@@ -1,6 +1,11 @@
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Values;
+using System.Security.Claims;
+using System.Text;
 
 namespace GatewayApi
 {
@@ -12,38 +17,69 @@ namespace GatewayApi
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+
+            {
+
+                // Set naming policy to null to preserve property names
+
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+
+            });
             builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
             builder.Services.AddOcelot(builder.Configuration);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddCors(options =>
+            var secretKey = builder.Configuration["ApiSettings:JwtOptions:SecretKey"];
+            if (string.IsNullOrEmpty(secretKey))
             {
-                options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder
-                        .WithOrigins("http://localhost:4200") // Add your Angular app's URL
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials()); // Add if you're using cookies or authentication
-            });
+                throw new ArgumentNullException("ApiSettings:JwtOptions:SecretKey", "SecretKey is missing in configuration.");
+            }
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                RoleClaimType = ClaimTypes.Role,
+                ValidIssuer = builder.Configuration["ApiSettings:JwtOptions:Issuer"],
+                ValidAudience = builder.Configuration["ApiSettings:JwtOptions:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(secretKey)
+                ),
+            };
+        });
+
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
             // Configure the HTTP request pipeline.
+
             if (app.Environment.IsDevelopment())
+
             {
+
                 app.UseSwagger();
+
                 app.UseSwaggerUI();
+
             }
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
-            app.UseCors("AllowSpecificOrigin");
-            app.UseOcelot();
+            
             app.MapControllers();
+            app.UseOcelot();
 
             app.Run();
         }

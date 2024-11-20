@@ -84,17 +84,7 @@ namespace MicroServicesExample.Services.AuthApi.Service
                 var result = await _userManager.CreateAsync(user, registrationRequestDto.Password);
                 if (result.Succeeded)
                 {
-                    if (!user.NormalizedEmail.EndsWith("@ADMINECO.COM"))
-                    {
-                        var roleName = "User";
-                        if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
-                        {
-                            _roleManager.CreateAsync(new ApplicationRole { Name = roleName }).GetAwaiter().GetResult();
-                        }
-                        await _userManager.AddToRoleAsync(user, roleName);
-
-                    }
-                    else
+                    if (user.NormalizedEmail.EndsWith("@ADMINECO.COM"))
                     {
                         var roleName = "Admin";
                         if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
@@ -103,6 +93,25 @@ namespace MicroServicesExample.Services.AuthApi.Service
                         }
                         await _userManager.AddToRoleAsync(user, roleName);
 
+                    }
+                    //else if (user.NormalizedEmail.EndsWith("@GUEST.COM"))
+                    //{
+                    //    var roleName = "Guest";
+                    //    if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
+                    //    {
+                    //        _roleManager.CreateAsync(new ApplicationRole { Name = roleName }).GetAwaiter().GetResult();
+                    //    }
+                    //    await _userManager.AddToRoleAsync(user, roleName);
+                    //}
+                    else
+                    {
+                        var roleName = "User";
+                        if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
+                        {
+                            _roleManager.CreateAsync(new ApplicationRole { Name = roleName }).GetAwaiter().GetResult();
+                        }
+                        await _userManager.AddToRoleAsync(user, roleName);
+                        
                     }
                     return "";
 

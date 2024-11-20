@@ -1,5 +1,6 @@
 ﻿using EcoLife.AuthAPi.Models.Dto;
 using EcoLife.AuthAPi.Service.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,7 @@ namespace EcoLife.AuthAPi.Controllers
             return Ok(_response);
         }
 
-
+        
         [HttpGet("Roles")]
         public async Task<IActionResult> GetRoles()
         {
@@ -45,6 +46,7 @@ namespace EcoLife.AuthAPi.Controllers
             
             return Ok(_response);
         }
+
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {
@@ -58,6 +60,7 @@ namespace EcoLife.AuthAPi.Controllers
             _response.Result = loginResponse;
             return Ok(_response);
         }
+       
 
         [HttpPut("Update/{userid}")]
         public async Task<IActionResult> Update(int userid,UpdateRequestDto model)

@@ -18,22 +18,14 @@ namespace EcoLife.WasteManagementApi
             options.UseSqlServer(builder.Configuration.GetConnectionString("ELWasteManagementDB")));
 
             builder.Services.AddTransient<IWasteManagementRepository, WasteMangementRepository>();
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder
-                        .WithOrigins("http://localhost:4200") // Add your Angular app's URL
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials()); // Add if you're using cookies or authentication
-            });
+            
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            
             var app = builder.Build();
-
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -42,10 +34,9 @@ namespace EcoLife.WasteManagementApi
             }
 
             app.UseHttpsRedirection();
-
+           
             app.UseAuthorization();
-
-            app.UseCors("AllowSpecificOrigin");
+            
             app.MapControllers();
 
             app.Run();

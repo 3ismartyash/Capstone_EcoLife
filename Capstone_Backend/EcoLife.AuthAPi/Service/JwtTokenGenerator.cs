@@ -21,13 +21,14 @@ namespace EcoLife.AuthApi.Service
         public string GenerateToken(ApplicationUser applicationUser,IList<string> role)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_jwtOptions.Secret);
+            var key = Encoding.ASCII.GetBytes(_jwtOptions.SecretKey);
             var claimList = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email,applicationUser.Email),
                 new Claim(JwtRegisteredClaimNames.Sub,applicationUser.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Name,applicationUser.UserName),
-                new Claim(ClaimTypes.Role, role[0])
+                //new Claim(ClaimTypes.Role, role[0]),
+                new Claim("roless",role[0]),
 
             };
             var tokenDescriptor = new SecurityTokenDescriptor

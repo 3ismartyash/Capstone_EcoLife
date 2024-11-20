@@ -1,6 +1,7 @@
 ﻿using EcoLife.TransportationApi.Models;
 using EcoLife.TransportationApi.Models.Dto;
 using EcoLife.TransportationApi.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoLife.TransportationApi.Controllers
@@ -15,23 +16,23 @@ namespace EcoLife.TransportationApi.Controllers
         {
             _transportationRepository = transportationRepository;
         }
-
         [HttpGet("all")]
+        
         public async Task<ActionResult<IEnumerable<TransportationEntity>>> GetAll()
         {
             var ent = await _transportationRepository.GetTransportationEntities();
             return Ok(ent);
         }
-
         [HttpGet("{Userid}")]
+        
         public async Task<ActionResult<IEnumerable<TransportationEntity>>> GetById(int Userid)
         {
             var ent = await _transportationRepository.GetTransportationById(Userid);
             return Ok(ent);
         }
-
+       
         [HttpPost]
-
+      
         public async Task<ActionResult<TransportationEntity>> PostEntity(TransportationDto entity)
         {
             if (entity != null)
@@ -41,18 +42,18 @@ namespace EcoLife.TransportationApi.Controllers
             }
             return BadRequest();
         }
-
+       
         [HttpPut("{id}")]
-
+       
         public async Task<ActionResult<TransportationEntity>> PutEntity(int id, TransportationDto entity)
         {
             var ent = await _transportationRepository.putTransportationEntity(id, entity);
             if (ent != null) return Ok(ent);
             return BadRequest();
         }
-
+       
         [HttpDelete("{id}")]
-
+       
         public async Task<ActionResult<bool>> DeleteEntity(int id)
         {
             var ent = await _transportationRepository.DeleteTransportationEntity(id);

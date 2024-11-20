@@ -1,6 +1,7 @@
 ﻿using EcoLife.RecommendationApi.Models;
 using EcoLife.RecommendationApi.Models.Dto;
 using EcoLife.RecommendationApi.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,13 +16,17 @@ namespace EcoLife.RecommendationApi.Controllers
         {
             _recommendationrepository = recommendationrepository;
         }
+        
         [HttpGet("{userid}")]
+        
         public async Task<ActionResult<IEnumerable<RecomendationEntity>>> GetRecommenationsbyUserIdAsync(int userid)
         {
             var entities = await _recommendationrepository.GetRecomendations(userid);
             return Ok(entities);
         }
+       
         [HttpPost]
+        
         public async Task<ActionResult<RecomendationEntity>> PostRecommenations(RecommendationDto entity)
         {
             if (entity != null)
@@ -31,7 +36,9 @@ namespace EcoLife.RecommendationApi.Controllers
             }
             return BadRequest();
         }
+       
         [HttpPut("{id}")]
+        
         public async Task<ActionResult<RecomendationEntity>> PutRecommendationsAsync(int id, RecommendationDto entity)
         {
 
@@ -40,7 +47,9 @@ namespace EcoLife.RecommendationApi.Controllers
                 return Ok(ent);
             return BadRequest();
         }
+    
         [HttpDelete("{id}")]
+        
         public async Task<ActionResult<bool>> DeleteRecommendationsAsync(int id)
         {
 

@@ -25,7 +25,10 @@
         }
       ],
       "UpstreamPathTemplate": "/household/{userid}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/HouseHold",
@@ -37,7 +40,10 @@
         }
       ],
       "UpstreamPathTemplate": "/household",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Recommendation/{userid}",
@@ -49,7 +55,10 @@
         }
       ],
       "UpstreamPathTemplate": "/recommendation/{userid}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Recommendation",
@@ -61,7 +70,10 @@
         }
       ],
       "UpstreamPathTemplate": "/recommendation",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Transportation/{userid}",
@@ -73,7 +85,10 @@
         }
       ],
       "UpstreamPathTemplate": "/transportation/{userid}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Transportation",
@@ -85,7 +100,10 @@
         }
       ],
       "UpstreamPathTemplate": "/transportation",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/AuthApi/Users",
@@ -97,7 +115,16 @@
         }
       ],
       "UpstreamPathTemplate": "/auth/users",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+
+        "roless": "Admin"
+
+      }
+
     },
     {
       "DownstreamPathTemplate": "/api/AuthApi/Login",
@@ -133,7 +160,10 @@
         }
       ],
       "UpstreamPathTemplate": "/auth/update/{id}",
-      "UpstreamHttpMethod": [ "PUT" ]
+      "UpstreamHttpMethod": [ "PUT" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/WasteManagement/{userid}",
@@ -145,7 +175,10 @@
         }
       ],
       "UpstreamPathTemplate": "/wastemanagement/{userid}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/WasteManagement",
@@ -157,8 +190,10 @@
         }
       ],
       "UpstreamPathTemplate": "/wastemanagement",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
     }
   ]
-
 }

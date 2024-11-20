@@ -17,9 +17,9 @@ namespace EcoLife.AQIApi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            
             var app = builder.Build();
-
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -28,9 +28,8 @@ namespace EcoLife.AQIApi
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
+            
 
             app.MapControllers();
 
